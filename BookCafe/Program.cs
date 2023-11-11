@@ -1,5 +1,6 @@
-﻿
-using BookCafe.Service;
+﻿using BookCafe.Service;
 
-AllBookInfo allBookInfo = new AllBookInfo();
-allBookInfo.SearchBook("Ufq");
+Menu menu = new Menu();
+menu.ClearAllInfo();
+menu.GetAllInfo();
+

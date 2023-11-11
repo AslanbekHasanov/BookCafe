@@ -8,20 +8,7 @@ namespace BookCafe.Service
 {
     public class AllBookInfo
     {
-        public void GetInfo()
-        {
-            Menu menu = new Menu();
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < menu.listBooks.Length / 4; j++)
-                {
-                    Console.Write(menu.listBooks[i, j] + "\t");
-                }
-                Console.WriteLine();
-
-            }
-
-        }
+       
         public void SearchBook(string bookName)
         {
             Menu menu = new Menu();
