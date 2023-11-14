@@ -9,13 +9,16 @@ namespace BookCafe.Service
     public class Menu
     {
 
-        public string[,] listBooks =
+
+        public bool isAdded = false;
+        
+        public string[,] listBooks = 
         {
             {"O'tgan kunlar", "40000","Abdullo Qodiriy","utgan asr haqida"},
             {"Ufq", "60000","Said Ahmat","Urush haqida"},
-            {"Dunyoning ishlari", "30000","O'tkir Xoshimov","Dunyoning g'aroyib ishlari"}
+            {"Dunyoning ishlari", "30000","O'tkir Xoshimov","Dunyoning g'aroyib ishlari"},
         };
-
+        public string[,] bookList = new string[4, 4];
 
 
         public void IsDeleteInfo(string book_name)
@@ -49,31 +52,62 @@ namespace BookCafe.Service
         }
         public void GetAllInfo()
         {
-            
-            for (int i = 0; i < listBooks.Length / 4; i++)
+            if (isAdded == false)
             {
-                int count = 0;
-                for (int j = 0; j < 4; j++)
+                for (int i = 0; i < listBooks.Length / 4; i++)
                 {
-                    if (listBooks[i, j] != null )
+                    int count = 0;
+                    for (int j = 0; j < 4; j++)
                     {
-                        Console.Write(listBooks[i, j] + "  ");
+                        if (listBooks[i, j] != null)
+                        {
+                            Console.WriteLine(listBooks[i, j]);
+
+                        }
+                        else
+                        {
+                            count++;
+                        }
 
                     }
-                    else
+                    if (count != 4)
                     {
-                        count++;
+                        Console.WriteLine();
+
                     }
 
-                }
-                if (count != 4)
-                {
-                    Console.WriteLine();                
 
                 }
-                
-
             }
+            else
+            {
+
+                for (int i = 0; i < bookList.Length / 4; i++)
+                {
+                    int count = 0;
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (bookList[i, j] != null)
+                        {
+                            Console.WriteLine(bookList[i, j]);
+
+                        }
+                        else
+                        {
+                            count++;
+                        }
+
+                    }
+                    if (count != 4)
+                    {
+                        Console.WriteLine();
+
+                    }
+
+
+                }
+            }
+           
 
         }
 
@@ -99,7 +133,62 @@ namespace BookCafe.Service
             }
 
 
+        } 
+
+        public void AddOneBook
+            (
+             string book_name, 
+             string book_price, 
+             string author, 
+             string discraption
+            )
+        {
+            bool isfound = false;
+            for (int i = 0; i < listBooks.Length / 4; i++)
+            {
+                for (int j = 0; j < 4; j += 3)
+                {
+                    //
+                    if (listBooks[i, j] == book_name)
+                    {
+                        isfound = true;
+                        Console.WriteLine("Bu kitob bazada bor");
+
+                    }
+
+                }
+
+            }
+            if (isfound == false)
+            {
+                isAdded = true;
+                for (int i = 0; i < listBooks.Length / 4; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        bookList[i, j] = listBooks[i, j];
+
+                    }
+
+                }
+
+                bookList[3, 0] = book_name;
+                bookList[3, 1] = book_price;
+                bookList[3, 2] = author;
+                bookList[3, 3] = discraption;
+
+                Console.WriteLine("Bazaga ma'lumot qushildi");
+
+            }
+
+
         }
+
+
+
+
+
+
 
     }
 }
