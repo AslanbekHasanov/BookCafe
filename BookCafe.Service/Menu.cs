@@ -9,6 +9,7 @@ namespace BookCafe.Service
     public class Menu
     {
 
+        private decimal priceSum;
 
         public bool isAdded = false;
         
@@ -20,6 +21,11 @@ namespace BookCafe.Service
         };
         public string[,] bookList = new string[4, 4];
 
+
+        public void AllSellBook()
+        {
+            Console.WriteLine($"Money: {this.priceSum}");
+        }
 
         public void IsDeleteInfo(string book_name)
         {
@@ -183,7 +189,43 @@ namespace BookCafe.Service
 
 
         }
+        //Topshiriq
+        public void OneUpdateBook()
+        {
 
+
+        }
+
+        
+
+
+        public void SellBook(string book_name)
+        {
+            bool res = false;
+            for (int i = 0; i < listBooks.Length / 4; i++)
+            {
+                for (int j = 0; j < 4; j+=3)
+                {
+                    if (listBooks[i, j].ToLower() == book_name.ToLower())
+                    {
+                        res = true;
+                        priceSum += Convert.ToDecimal(listBooks[i, j + 1]);
+
+
+                    }
+
+                }
+
+            }
+
+            if (res == false)
+            {
+                Console.WriteLine("Not Found");
+
+            }
+
+
+        }
 
 
 
